@@ -23,6 +23,7 @@ class LinkedLink{
             current = current.next;
         }
         previous.next = node
+        this.size++;
     }
 
 
@@ -31,6 +32,40 @@ class LinkedLink{
         this.head = new Node(value, this.head)
         this.size++;
     }
+
+    //size returns the total number of nodes in the list
+    size(){
+        return this.size
+    }
+    //head returns the first node in the list
+    head(){
+        return this.head
+    }
+
+    //tail returns the last node in the list
+    tail(){
+        let current = this.head;
+        while(current.next){
+            current = current.next
+        }
+        return current.value
+    }
+    //at(index) returns the node at the given index
+    at(index){
+        if (index > this.size || index < 0){
+            return
+        }
+        let count=0;
+        let current = this.head;
+        while (current){
+            if (count == index){
+                return current.value
+            }
+            current = current.next
+            count++
+        }
+    }
+    
 
     //represents your LinkedList objects as strings, so you can print them out and preview them in the console.
     toString(){
@@ -53,5 +88,9 @@ ll.prepend(6);
 ll.prepend(7);
 ll.append(8);
 ll.append(9);
+ll.append(9);
 ll.prepend(10);
 console.log(ll.toString())
+console.log(ll.size)
+console.log(ll.tail())
+console.log(ll.at(5))
