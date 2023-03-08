@@ -65,6 +65,48 @@ class LinkedLink{
             count++
         }
     }
+
+    //pop removes the last element from the list
+    pop(){
+        let current = this.head;
+        let prev = null;
+        while (current.next) {
+          prev = current;
+          current = current.next;
+        }
+        if (prev) {
+          prev.next = null;
+        } else {
+          this.head = null;
+        }
+        this.size--;
+        return current.value;
+    }
+    
+    //contains(value) returns true if the passed in value is in the list and otherwise returns false.
+    contains(value){
+        let current = this.head;
+        while (current){
+            if(current.value == value){
+                return true
+            }
+            current = current.next;
+        }
+        return false
+    }
+
+    //find(value) returns the index of the node containing value, or null if not found.
+    find(value){
+        let count=0;
+        let current = this.head;
+        while (current){
+            if (current.value == value){
+                return count
+            }
+            current = current.next
+            count++
+        }
+    }
     
 
     //represents your LinkedList objects as strings, so you can print them out and preview them in the console.
@@ -90,7 +132,10 @@ ll.append(8);
 ll.append(9);
 ll.append(9);
 ll.prepend(10);
+ll.pop()
 console.log(ll.toString())
 console.log(ll.size)
 console.log(ll.tail())
 console.log(ll.at(5))
+console.log(ll.contains(10))
+console.log(ll.find(6))
